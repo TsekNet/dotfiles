@@ -27,4 +27,3 @@ if [ ! -n "$(grep "^github.com " ~/.ssh/known_hosts)" ]; then ssh-keyscan github
 
 export PATH=$HOME/bin:$PATH
 chezmoi init --apply --verbose git@github.com:tseknet/dotfiles.git
-chezmoi apply

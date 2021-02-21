@@ -119,4 +119,3 @@ Write-Host 'Configuring Chezmoi...' -ForegroundColor Magenta
 chezmoi cd
 chezmoi init --apply --verbose git@github.com:tseknet/dotfiles.git
 chezmoi diff
-chezmoi apply
