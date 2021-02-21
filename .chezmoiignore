@@ -1,0 +1,19 @@
+﻿// Do not apply these files (https://www.chezmoi.io/docs/how-to/)
+
+README.md
+LICENSE
+install.sh
+install.ps1
+*.deb
+*.tar.gz
+
+{{ if eq .chezmoi.os "linux" }}
+  Documents
+  AppData
+  dot_config/icons
+  dot_config/profile.ps1
+{{ end }}
+
+{{ if eq .chezmoi.os "windows" }}
+  private_dot_ssh
+{{ end }}

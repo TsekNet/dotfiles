@@ -1,0 +1,105 @@
+﻿# ~/.config/starship.toml
+
+add_newline = false
+
+# Order of modules on prompt
+format = """\
+        $status\
+        $custom\
+        $directory\
+        $username\
+        $hostname\
+        $aws\
+        $gcloud\
+        $singularity\
+        $kubernetes\
+        $docker_context\
+        (↓ Source control - for right side ↓)\
+        $hg_branch\
+        $git_branch\
+        $git_commit\
+        $git_status\
+        $git_state\
+        (↑ Source control - for right side ↑)\
+        $nix_shell\
+        $env_var\
+        $shlvl\
+        $jobs\
+        $cmd_duration\
+        $line_break\
+        (↑ above input line ↑)\
+        (↓ on input line ↓)\
+        $character\
+    """
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 4
+home_symbol = "🏠"
+
+[character]
+error_symbol = "[❯](bold red)"
+
+[status]
+symbol = "‼️"
+not_found_symbol = "⁉"
+format = '[$symbol[ $signal_name$maybe_int](#FFA500)]($style) '
+map_symbol = true
+disabled = false
+
+################################################################################
+# Custom Commands                                                              #
+################################################################################
+
+[directory.substitutions]
+"C:/tmp" = "🚧"
+"C:/Tmp" = "🚧"
+"/mnt/c/tmp" = "🚧"
+"/mnt/C/Tmp" = "🚧"
+"D:/projects" = "🎨"
+"D:/Projects" = "🎨"
+"/mnt/d/projects" = "🎨"
+"/mnt/d/Projects" = "🎨"
+
+[custom.workspace]
+command = "echo -n $PWD | cut -d / -f 6"
+when = "g4d"
+format = "[\\[](bold cyan)[$symbol$output](yellow)[\\]](bold cyan) "
+
+################################################################################
+# Modules config                                                               #
+################################################################################
+
+[git_state]
+format = "[|$state:$progress_current/$progress_total]"
+
+# Match github.com:magicmonty/bash-git-prompt
+[git_status]
+format = "[(\\[$conflicted$staged$modified$deleted$renamed$untracked$stashed$ahead_behind\\])]($white)"
+
+ahead    = "↑${count}"
+diverged = "↑${ahead_count}↓${behind_count}"
+behind   = "↓${count}"
+conflicted = "[ ✖$count✖ ](bold red)"
+staged     = "[✚ $count](green)"
+modified   = "[✚ $count](bold blue)"
+deleted    = "[-$count](red)"
+renamed    = "[»$count](green)"
+untracked  = "[…$count](cyan)"
+stashed    = "[⚑ $count](bold blue)"
+
+[username]
+format = "[$user@]($style)"
+style_user = "cyan"
+style_root = "red bold"
+show_always = false
+
+[hostname]
+format = "[$hostname](cyan) "
+ssh_only = true
+
+[gcloud]
+format = '$symbol[\($region\)]($style) '
+
+[cmd_duration]
+format = "[$duration](bold yellow)"

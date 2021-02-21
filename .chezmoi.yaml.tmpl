@@ -1,0 +1,15 @@
+﻿{{- if eq .chezmoi.os "windows" -}}
+cd:
+  command: "powershell"
+  args: ["-NoLogo", "-NoExit", "-Command", "& {Set-Location $env:HOMEPATH/.local/share/chezmoi}"]
+{{ end -}}
+
+sourceVCS:
+  autoCommit: true
+
+data:
+  custom_user: "{{ promptString "user" }}"
+  custom_remote_host: "{{ promptString "remote_host" }}"
+  data.github:
+    user: 'TsekNet'
+    email: "{{ promptString "email" }}"
