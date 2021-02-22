@@ -116,6 +116,5 @@ $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
 
 Write-Host 'Configuring Chezmoi...' -ForegroundColor Magenta
 
-chezmoi cd
 chezmoi init --apply --verbose git@github.com:tseknet/dotfiles.git
 chezmoi diff
