@@ -140,12 +140,7 @@ Add-Module -Name 'PSWriteHTML' -Version 0.0.131
 ################################################################################
 # Update the console title with current PowerShell elevation and version       #
 ################################################################################
-$elevation = 'User'
-if (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
-  $elevation = 'Admin'
-}
-
-$Host.UI.RawUI.WindowTitle = "PS | $elevation | v$($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor) | $((Invoke-WebRequest wttr.in/new_york_city?format="%c%t&u").content)"
+$Host.UI.RawUI.WindowTitle = "PS | v$($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor) | $((Invoke-WebRequest wttr.in/new_york_city?format="%c%t&u").content)"
 
 ################################################################################
 # PSReadLine and prompt options                                                #
