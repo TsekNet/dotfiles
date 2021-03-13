@@ -1,1 +1,1 @@
-. $env:HOMEPATH\.config\profile.ps1
+. "$env:HOMEDRIVE\$env:HOMEPATH\.config\profile.ps1"
