@@ -41,7 +41,13 @@ function Add-Module {
       return
     }
 
-    Install-Module @module_args -Scope 'CurrentUser' -AllowClobber -AllowPrerelease
+    # AllowPreRelease is only available with the latest PowerShellGet module
+    try {
+      Install-Module @module_args -Scope 'CurrentUser' -AllowClobber -AllowPrerelease -ErrorAction Stop
+    } catch {
+      Install-Module @module_args -Scope 'CurrentUser' -AllowClobber
+    }
+
     Import-Module @module_args -Global
     Write-Host '[+] ' -ForegroundColor Green -NoNewline
     Write-Host "Installed module: [$Name]"
