@@ -6,6 +6,7 @@ install.sh
 install.ps1
 *.deb
 *.tar.gz
+display_switch.exe
 
 {{ if eq .chezmoi.os "linux" }}
   Documents
