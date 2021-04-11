@@ -11,7 +11,7 @@ New to dotfiles? Check out [dotfiles.github.io](https://dotfiles.github.io/) for
 
 Below are the commands you can run to get started with my dotfiles.
 
-⚠ Be sure to review the code before executing random scripts on the internet.
+⚠ Be sure to review the code before executing random scripts on the internet. TL;DR can be found in [install.ps1](install.ps1) Comment-Based Help.
 
 ### Linux
 
