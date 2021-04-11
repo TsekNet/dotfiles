@@ -10,7 +10,6 @@
 ################################################################################
 # Package Management (https://tseknet.com/blog/chocolatey)                     #
 ################################################################################
-
 Write-Host 'Configuring Chocolatey...' -ForegroundColor Magenta
 
 if (-not (Get-Command -Name choco -ErrorAction SilentlyContinue)) {
@@ -89,9 +88,21 @@ if (-not (Test-ChocolateyPackageInstalled('choco-upgrade-all-at'))) {
 }
 
 ################################################################################
+# Add commonly used modules (this must be done first)                          #
+################################################################################
+Install-Module PSDepend -Scope CurrentUser
+Import-Module PSDepend
+
+Write-Host 'Downloading PowerShell module dependency list from GitHub...' -ForegroundColor Magenta
+New-Item -ItemType Directory "$env:HOMEDRIVE\$env:HOMEPATH\.config\" -ErrorAction SilentlyContinue
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/TsekNet/dotfiles/main/dot_config/requirements.psd1' -UseBasicParsing -OutFile "$env:HOMEDRIVE\$env:HOMEPATH\.config\requirements.psd1"
+
+Write-Host 'Installing PowerShell modules...' -ForegroundColor Magenta
+Invoke-PSDepend -Path "$env:HOMEDRIVE\$env:HOMEPATH\.config\requirements.psd1" -Import -Force
+
+################################################################################
 # GitHub setup                                                                 #
 ################################################################################
-
 Write-Host 'Configuring GitHub SSH key...' -ForegroundColor Magenta
 
 # Use OpenSSH ssh-keygen rather than the one in path
@@ -113,7 +124,6 @@ $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
 ################################################################################
 # Chezmoi setup                                                                #
 ################################################################################
-
 Write-Host 'Configuring Chezmoi...' -ForegroundColor Magenta
 
 chezmoi init --apply --verbose git@github.com:tseknet/dotfiles.git

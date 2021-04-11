@@ -1,59 +1,5 @@
 #region functions
 
-function Add-Module {
-  <#
-  .SYNOPSIS
-    Helper function to ensure all modules are loaded, with error handling
-  .PARAMETER Name
-    String name of the module being imported
-  .PARAMETER Version
-    Version number of the module being imported
-  #>
-  [CmdletBinding()]
-  param (
-    [Parameter(Mandatory)]
-    [string[]]$Name,
-    [Parameter(Mandatory)]
-    [System.Version]$Version
-  )
-  if (Get-Module -ListAvailable -FullyQualifiedName @{
-      ModuleName    = $Name;
-      ModuleVersion = $Version
-    }) {
-    return
-  }
-
-  $module_args = @{
-    Name           = $Name
-    MinimumVersion = $Version
-    Force          = $true
-    ErrorAction    = 'Stop'
-  }
-
-  try {
-    Import-Module @module_args -Global
-    Write-Host '[+] ' -ForegroundColor Green -NoNewline
-    Write-Host "Imported module: [$Name]"
-  } catch {
-    if (-not (Find-Module -Name $Name)) {
-      Write-Host '[-] ' -ForegroundColor Red -NoNewline
-      Write-Host "Failed to find module: [$Name]"
-      return
-    }
-
-    # AllowPreRelease is only available with the latest PowerShellGet module
-    try {
-      Install-Module @module_args -Scope 'CurrentUser' -AllowClobber -AllowPrerelease -ErrorAction Stop
-    } catch {
-      Install-Module @module_args -Scope 'CurrentUser' -AllowClobber
-    }
-
-    Import-Module @module_args -Global
-    Write-Host '[+] ' -ForegroundColor Green -NoNewline
-    Write-Host "Installed module: [$Name]"
-  }
-}
-
 function Get-FileHash256 {
   <#
   .SYNOPSIS
@@ -134,15 +80,6 @@ function sudo {
 #endregion
 
 #region execution
-
-################################################################################
-# Add commonly used modules (this must be done first)                          #
-################################################################################
-Add-Module -Name 'PowerShellGet' -Version 2.2
-Add-Module -Name 'Get-ChildItemColor' -Version 2.2
-Add-Module -Name 'PSReadLine' -Version 2.1
-Add-Module -Name 'PSWriteHTML' -Version 0.0.131
-
 ################################################################################
 # Update the console title with current PowerShell elevation and version       #
 ################################################################################
