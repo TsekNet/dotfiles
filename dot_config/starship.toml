@@ -89,13 +89,13 @@ untracked  = "[…$count](cyan)"
 stashed    = "[⚑ $count](bold blue)"
 
 [username]
-format = "[$user@]($style)"
+format = "[$user]($style)"
 style_user = "cyan"
 style_root = "red bold"
 show_always = false
 
 [hostname]
-format = "[$hostname](cyan) "
+format = "[@$hostname](cyan) "
 ssh_only = true
 
 [gcloud]
