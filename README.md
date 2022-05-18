@@ -33,7 +33,11 @@ iex ((New-Object Net.WebClient).DownloadString('https://git.io/tsekps'))
 
 ```bash
 chezmoi init --apply --verbose https://github.com/tseknet/dotfiles.git
-# OR
+```
+
+OR
+
+```bash
 chezmoi init --apply --verbose git@github.com:tseknet/dotfiles.git
 ```
 
