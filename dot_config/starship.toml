@@ -106,10 +106,11 @@ untracked  = "[…$count](cyan)"
 stashed    = "[⚑ $count](bold blue)"
 
 [username]
-format = "[$user@]($style)"
-style_user = "cyan"
-style_root = "red bold"
-show_always = false
+disabled = true
+# format = "[$user]($style)"
+# style_user = "cyan"
+# style_root = "red bold"
+# show_always = false
 
 [hostname]
 format = "[@$hostname](cyan) "
