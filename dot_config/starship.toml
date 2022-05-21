@@ -7,7 +7,8 @@ format = """\
         $status\
         $custom\
         $directory\
-        $username\
+        ${custom.ssh_root}\
+        ${custom.ssh_user}\
         $hostname\
         $aws\
         $gcloud\
@@ -66,6 +67,22 @@ command = "echo -n $PWD | cut -d / -f 6"
 when = "g4d"
 format = "[\\[](bold cyan)[$symbol$output](yellow)[\\]](bold cyan) "
 
+[custom.ssh_root]
+# disabled = true
+description = "Display username on a ssh session, if different from standard user"
+command = "echo $USER"
+when = '[[ -n "$SSH_CONNECTION" ]] && ([[ "$USER" == "root" ]] || [[ -n "$SUDO_USER" ]] || [[ "$USER" != "$LOGNAME" ]])'
+shell = ["bash", "--noprofile", "--norc"]
+format = "[$output](red bold)"
+
+[custom.ssh_user]
+# disabled = true
+description = "Display username, if on a ssh session"
+command = "echo $USER"
+when = '([[ -n "$SSH_CONNECTION" ]] && [[ "$USER" != "root" ]] && [[ -z "$SUDO_USER" ]] && [[ "$USER" == "$LOGNAME" ]])'
+shell = ["bash", "--noprofile", "--norc"]
+format = "[$output](cyan)"
+
 ################################################################################
 # Modules config                                                               #
 ################################################################################
@@ -89,7 +106,7 @@ untracked  = "[…$count](cyan)"
 stashed    = "[⚑ $count](bold blue)"
 
 [username]
-format = "[$user]($style)"
+format = "[$user@]($style)"
 style_user = "cyan"
 style_root = "red bold"
 show_always = false
