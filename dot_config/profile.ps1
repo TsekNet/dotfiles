@@ -95,7 +95,7 @@ if (-not (Get-Module PSReadline)) {
   Set-PSReadLineOption -ShowToolTips -BellStyle Visual -HistoryNoDuplicates
   Set-PSReadLineOption -PredictionSource History
 
-  if ($env:STARSHIP_SHELL -eq 'powershell') {
+  if ($env:STARSHIP_SHELL -eq 'powershell' -or 'pwsh') {
     # Set the prompt character to change color based on syntax errors
     # https://github.com/PowerShell/PSReadLine/issues/1541#issuecomment-631870062
     $esc = [char]0x1b # Escape Character
@@ -108,6 +108,7 @@ if (-not (Get-Module PSReadline)) {
       " $esc[4$esc[4${fg};3${bg}m$symbol ",
       " $esc[4$esc[4${fg};3${err_bg}m$symbol "
     )
+   $env:STARSHIP_LOG = 'error'
   }
 }
 
