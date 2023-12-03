@@ -90,7 +90,7 @@ if (-not (Get-Module PSReadline)) {
 } else {
   Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
   Set-PSReadLineOption -ShowToolTips -BellStyle Visual -HistoryNoDuplicates
-  Set-PSReadLineOption -PredictionSource History
+  Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 
   if ($env:STARSHIP_SHELL -eq 'powershell' -or 'pwsh') {
     # Set the prompt character to change color based on syntax errors
