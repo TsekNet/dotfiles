@@ -18,7 +18,7 @@ Below are the commands you can run to get started with my dotfiles.
 Execute the install script (downloaded via curl):
 
 ```bash
-sh <(curl -fsSL https://git.io/tseksh)
+bash <(curl -fsSL https://git.io/tseksh)
 ```
 
 ### Windows
