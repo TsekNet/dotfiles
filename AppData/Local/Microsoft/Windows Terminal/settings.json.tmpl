@@ -50,12 +50,12 @@
         "icon": "%USERPROFILE%/.config/icons/tux.png",
         "name": "Debian (WSL)",
         "source": "Windows.Terminal.Wsl",
-        "startingDirectory": "/mnt/c/tmp/",
+        "startingDirectory": "/tmp/",
         "useAcrylic": true
       },
       {
         "acrylicOpacity": 0.95,
-        "commandline": "ssh -t {{ .custom_remote_host }} fish",
+        "commandline": "ssh -t {{ .custom_remote_host }}",
         "guid": "{c04584a5-6759-4c9b-a39a-49cd41a26daf}",
         "icon": "%USERPROFILE%/.config/icons/ssh.png",
         "name": "SSH: {{ .custom_remote_host }}",
