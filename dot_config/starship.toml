@@ -55,12 +55,8 @@ disabled = false
 [directory.substitutions]
 "C:/tmp" = "🚧"
 "C:/Tmp" = "🚧"
-"/mnt/c/tmp" = "🚧"
-"/mnt/C/Tmp" = "🚧"
-"D:/projects" = "🎨"
-"D:/Projects" = "🎨"
-"/mnt/d/projects" = "🎨"
-"/mnt/d/Projects" = "🎨"
+"/tmp" = "🚧"
+"/Tmp" = "🚧"
 
 [custom.workspace]
 command = "echo -n $PWD | cut -d / -f 6"

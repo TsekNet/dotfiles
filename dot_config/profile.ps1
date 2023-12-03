@@ -73,13 +73,10 @@ function Open-HistoryFile {
   }
 }
 
-function sudo {
-  Start-Process @args -Verb RunAs -Wait
-}
-
 #endregion
 
 #region execution
+
 ################################################################################
 # Update the console title with current PowerShell elevation and version       #
 ################################################################################
@@ -112,11 +109,39 @@ if (-not (Get-Module PSReadline)) {
   }
 }
 
-# Chezmoi edit command defaults to vi, which doesn't exist on Windows
-$env:EDITOR = 'code-insiders'
-
 # https://starship.rs/
 Invoke-Expression (&starship init powershell)
+
+################################################################################
+# Windows/Linux differences                                                    #
+################################################################################
+if ($IsLinux) {
+  $TMP_DIR = '/tmp/'
+
+  # PSDepend doesn't seem to work on PS7 on Linux, install modules here.
+  Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+  $modules = @(
+    'PowerShellGet',
+    'PSReadLine',
+    'Get-ChildItemColor',
+    'PSWriteHTML'
+  )
+
+  foreach ($module in $modules) {
+    if (-not (Get-Module -ListAvailable -Name $module)) {
+      Install-Module $module -AllowClobber -AllowPrerelease -Scope CurrentUser -Force
+    }
+  }
+} else {
+  $TMP_DIR = $TMP_DIR = 'C:\Tmp'
+  # Chezmoi edit command defaults to vi, which doesn't exist on Windows
+  $env:EDITOR = 'code-insiders'
+
+  # Fake sudo on Windows
+  function sudo {
+    Start-Process @args -Verb RunAs -Wait
+  }
+}
 
 ################################################################################
 # Set common aliases                                                           #
@@ -128,7 +153,7 @@ Set-Alias -Name History -Value Open-HistoryFile -Scope Global -Option AllScope
 ################################################################################
 # Always start in the same directory                                           #
 ################################################################################
-$TMP_DIR = 'C:\Tmp'
+
 if (-not (Test-Path $TMP_DIR)) {
   New-Item -ItemType Directory -Path $TMP_DIR -Force
 }
