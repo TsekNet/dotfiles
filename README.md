@@ -15,10 +15,10 @@ Below are the commands you can run to get started with my dotfiles.
 
 ### Linux
 
-Use curl to download the package, and bash to execute it.
+Execute the install script (downloaded via curl):
 
 ```bash
-curl -fsSL https://git.io/tseksh | bash
+sh <(curl -fsSL https://git.io/tseksh)
 ```
 
 ### Windows
