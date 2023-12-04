@@ -60,7 +60,7 @@ disabled = false
 
 [custom.workspace]
 command = "echo -n $PWD | cut -d / -f 6"
-when = "p4 g4d"
+when = """ test "$(p4 g4d)" == "$PWD" """
 shell = ["bash", "--noprofile", "--norc"]
 format = "[\\[](bold cyan)[$symbol$output](yellow)[\\]](bold cyan) "
 
