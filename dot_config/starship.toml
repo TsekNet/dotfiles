@@ -1,4 +1,4 @@
-﻿# ~/.config/starship.toml
+# ~/.config/starship.toml
 
 add_newline = false
 
@@ -60,7 +60,8 @@ disabled = false
 
 [custom.workspace]
 command = "echo -n $PWD | cut -d / -f 6"
-when = "g4d"
+when = "p4 g4d"
+shell = ["bash", "--noprofile", "--norc"]
 format = "[\\[](bold cyan)[$symbol$output](yellow)[\\]](bold cyan) "
 
 [custom.ssh_root]
