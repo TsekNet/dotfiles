@@ -80,7 +80,7 @@ function Open-HistoryFile {
 ################################################################################
 # Update the console title with current PowerShell elevation and version       #
 ################################################################################
-$Host.UI.RawUI.WindowTitle = "PS | v$($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor) | $((Invoke-WebRequest wttr.in/london?format="%c%t&u" -UseBasicParsing).content)"
+$Host.UI.RawUI.WindowTitle = "PS | v$($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor) | $((Invoke-WebRequest wttr.in/nyc?format="%c%t&u" -UseBasicParsing).content)"
 
 ################################################################################
 # PSReadLine and prompt options                                                #
