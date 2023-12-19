@@ -36,7 +36,7 @@ format = """\
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 4
-home_symbol = "🏠"
+home_symbol = "🏠 "
 
 [character]
 error_symbol = "[❯](bold red)"
@@ -53,10 +53,10 @@ disabled = false
 ################################################################################
 
 [directory.substitutions]
-"C:/tmp" = "🚧"
-"C:/Tmp" = "🚧"
-"/tmp" = "🚧"
-"/Tmp" = "🚧"
+"C:/tmp" = "🚧 "
+"C:/Tmp" = "🚧 "
+"/tmp" = "🚧 "
+"/Tmp" = "🚧 "
 
 [custom.workspace]
 command = "echo -n $PWD | cut -d / -f 6"
