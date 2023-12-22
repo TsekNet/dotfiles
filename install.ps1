@@ -41,6 +41,7 @@ param (
     '7zip'
     'cascadiacodepl'
     'chezmoi'
+    'gimp'
     'git'
     'gitversion.portable'
     'google-backup-and-sync'
@@ -56,6 +57,7 @@ param (
     'spotify'
     'starship'
     'steam'
+    'tailscale'
     'treesizefree'
     'vscode-insiders'
   )
