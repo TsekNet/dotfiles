@@ -133,6 +133,13 @@ if ($IsLinux) {
       Install-Module $module -AllowClobber -AllowPrerelease -Scope CurrentUser -Force
     }
   }
+
+  function g4d {
+    param (
+      [System.IO.FileInfo]$Path
+    )
+    Set-Location -Path $(p4 g4d $Path)
+  }
 } else {
   $TMP_DIR = $TMP_DIR = 'C:\Tmp'
   # Chezmoi edit command defaults to vi, which doesn't exist on Windows
