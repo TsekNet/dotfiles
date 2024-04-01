@@ -114,7 +114,7 @@ format = "[@$hostname](cyan) "
 ssh_only = true
 
 [gcloud]
-format = '$symbol[\($region\)]($style) '
+format = '$symbol'
 
 [cmd_duration]
 format = "[$duration](bold yellow)"
