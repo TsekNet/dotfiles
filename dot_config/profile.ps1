@@ -116,7 +116,7 @@ Invoke-Expression (&starship init powershell)
 ################################################################################
 # Windows/Linux differences                                                    #
 ################################################################################
-if ($IsLinux) {
+if ($IsLinux -or $IsMacOs) {
   $TMP_DIR = '/tmp/'
 
   # PSDepend doesn't seem to work on PS7 on Linux, install modules here.
