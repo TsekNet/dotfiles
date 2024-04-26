@@ -140,6 +140,13 @@ if ($IsLinux -or $IsMacOs) {
     )
     Set-Location -Path $(p4 g4d $Path)
   }
+  function hgd {
+    param (
+      [System.IO.FileInfo]$Path
+    )
+    Set-Location -Path $(hg hgd $Path)
+  }
+  
 } else {
   $TMP_DIR = $TMP_DIR = 'C:\Tmp'
   # Chezmoi edit command defaults to vi, which doesn't exist on Windows
