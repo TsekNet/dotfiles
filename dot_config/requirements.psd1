@@ -1,20 +1,31 @@
 @{
   PSDependOptions      = @{
     Target = 'CurrentUser'
-    Import = $true
+    Import = $false
   }
-  PowerShellGet        = 'latest'
+  PowerShellGet        = @{
+    Version = '2.2.5'
+    Parameters = @{
+      AllowClobber = $true
+    }
+  }
   'Get-ChildItemColor' = @{
     DependsOn = 'PowerShellGet'
+    Parameters = @{
+      AllowClobber = $true
+    }
   }
   PSWriteHTML          = @{
     DependsOn = 'PowerShellGet'
+    Parameters = @{
+      AllowClobber = $true
+    }
   }
   PSReadLine           = @{
     DependsOn  = 'PowerShellGet'
-    Install    = $false
     Parameters = @{
       AllowPrerelease = $true
+      AllowClobber = $true
     }
   }
 }
