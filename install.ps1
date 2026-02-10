@@ -117,7 +117,7 @@ if (-not (Test-ChocolateyPackageInstalled -Package 'choco-upgrade-all-at')) {
 ################################################################################
 # Add commonly used modules (this must be done first)                          #
 ################################################################################
-Install-Module PSDepend -Scope CurrentUser
+Install-Module PSDepend -Scope CurrentUser -Force -AllowClobber
 Import-Module PSDepend
 
 Write-Host 'Downloading PowerShell module dependency list from GitHub...' -ForegroundColor Magenta
@@ -125,7 +125,7 @@ New-Item -ItemType Directory $ModuleFilePath -ErrorAction SilentlyContinue
 Invoke-WebRequest -Uri $ModuleUri -UseBasicParsing -OutFile "$ModuleFilePath\requirements.psd1"
 
 Write-Host 'Installing PowerShell modules...' -ForegroundColor Magenta
-Invoke-PSDepend -Path "$ModuleFilePath\requirements.psd1" -Import -Force
+Invoke-PSDepend -Path "$ModuleFilePath\requirements.psd1" -Force
 
 ################################################################################
 # GitHub setup                                                                 #
