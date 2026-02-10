@@ -18,7 +18,7 @@ Below are the commands you can run to get started with my dotfiles.
 Execute the install script (downloaded via curl):
 
 ```bash
-bash <(curl -fsSL https://git.io/tseksh)
+bash <(curl -fsSL https://raw.githubusercontent.com/TsekNet/dotfiles/main/install.sh)
 ```
 
 ### Windows
@@ -26,7 +26,7 @@ bash <(curl -fsSL https://git.io/tseksh)
 Run the following command in PowerShell as administrator:
 
 ```powershell
-iex ((New-Object Net.WebClient).DownloadString('https://git.io/tsekps'))
+iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/TsekNet/dotfiles/main/install.ps1'))
 ```
 
 ## Usage

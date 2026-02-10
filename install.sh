@@ -62,5 +62,5 @@ chezmoi init --apply --verbose git@github.com:tseknet/dotfiles.git
 # Set pwsh as the default shell
 sudo chsh -s "$(command -v pwsh)" "${USER}"
 
-# Install PowerShell (pwsh) Modules
+# Install PowerShell (pwsh) modules by starting pwsh so profile runs and installs modules
 pwsh -NoLogo

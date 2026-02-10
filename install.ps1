@@ -1,4 +1,4 @@
-﻿<#
+<#
 .Synopsis
   Install TsekNet dotfiles.
 .DESCRIPTION
@@ -14,7 +14,7 @@
   7. Configure GitHub SSH keys
   8. Initialize Chezmoi (https://github.com/twpayne/chezmoi) to download and keep remaining dotfiles up-to-date
 .PARAMETER ModuleUri
- Fully qualified Uri for the requirements.psd1 file used by PSDepend to install depdendencies.
+ Fully qualified Uri for the requirements.psd1 file used by PSDepend to install dependencies.
  See https://github.com/RamblingCookieMonster/PSDepend for more information
 .PARAMETER ModulefilePath
  Destination path for the $ModuleUri parameter file (excluding requirements.psd1)
@@ -43,7 +43,7 @@ param (
     'chezmoi'
     'git'
     'gitversion.portable'
-    'google-backup-and-sync'
+    'googledrive'
     'firefox'
     'greenshot'
     'mpc-hc'
@@ -91,18 +91,16 @@ function Test-ChocolateyPackageInstalled {
 
   Process {
     if (Test-Path -Path $env:ChocolateyInstall) {
-      $packageInstalled = Test-Path -Path "$env:ChocolateyInstall\lib\$Package"
-    } else {
-      Write-Host "Can't find a chocolatey install directory..."
+      return (Test-Path -Path "$env:ChocolateyInstall\lib\$Package")
     }
-
-    return $packageInstalled
+    Write-Host "Can't find a chocolatey install directory..."
+    return $false
   }
 }
 
 $missing_packages = [System.Collections.ArrayList]::new()
 foreach ($package in $Packages) {
-  if (-not (Test-ChocolateyPackageInstalled($package))) {
+  if (-not (Test-ChocolateyPackageInstalled -Package $package)) {
     $missing_packages.Add($package)
   }
 }
@@ -112,7 +110,7 @@ if ($missing_packages) {
 }
 
 # Keep packages up to date
-if (-not (Test-ChocolateyPackageInstalled('choco-upgrade-all-at'))) {
+if (-not (Test-ChocolateyPackageInstalled -Package 'choco-upgrade-all-at')) {
   & choco install choco-upgrade-all-at --params "'/WEEKLY:yes /DAY:SUN /TIME:01:00'" --force
 }
 
@@ -134,8 +132,15 @@ Invoke-PSDepend -Path "$ModuleFilePath\requirements.psd1" -Import -Force
 ################################################################################
 Write-Host 'Configuring GitHub SSH key...' -ForegroundColor Magenta
 
-# Use OpenSSH ssh-keygen rather than the one in path
-& "$env:ProgramFiles\OpenSSH-Win64\ssh-keygen.exe" -t ed25519 -C $SSHEmail
+$sshKeygen = "$env:ProgramFiles\OpenSSH-Win64\ssh-keygen.exe"
+if (-not (Test-Path $sshKeygen)) { $sshKeygen = 'ssh-keygen' }
+
+if (-not (Test-Path $SSHFile)) {
+  & $sshKeygen -t ed25519 -C $SSHEmail -f $SSHFile -N ([string]::Empty)
+} else {
+  Write-Host "SSH key already exists at $SSHFile; skipping keygen."
+}
+
 ssh-add $SSHFile
 
 # Copy resulting output to GitHub

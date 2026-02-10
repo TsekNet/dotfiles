@@ -1,4 +1,4 @@
-﻿// Do not apply these files (https://www.chezmoi.io/docs/how-to/)
+// Do not apply these files (https://www.chezmoi.io/docs/how-to/)
 
 README.md
 LICENSE
@@ -12,7 +12,6 @@ display_switch.exe
   Documents
   AppData
   dot_config/icons
-  dot_config/profile.ps1
 {{ end }}
 
 {{ if eq .chezmoi.os "windows" }}

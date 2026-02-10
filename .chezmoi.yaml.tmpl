@@ -1,7 +1,7 @@
-﻿{{- if eq .chezmoi.os "windows" -}}
+{{- if eq .chezmoi.os "windows" -}}
 cd:
   command: "powershell"
-  args: ["-NoLogo", "-NoExit", "-Command", "& {Set-Location $env:HOMEPATH/.local/share/chezmoi}"]
+  args: ["-NoLogo", "-NoExit", "-Command", "& {Set-Location $env:USERPROFILE/.local/share/chezmoi}"]
 {{ end -}}
 
 sourceVCS:
