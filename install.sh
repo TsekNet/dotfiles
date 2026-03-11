@@ -57,10 +57,12 @@ export PATH=$HOME/bin:$PATH
 chezmoi init --apply --verbose git@github.com:tseknet/dotfiles.git
 
 ################################################################################
-# PowerShell                                                                   #
+# Shell                                                                        #
 ################################################################################
-# Set pwsh as the default shell
-sudo chsh -s "$(command -v pwsh)" "${USER}"
+# Bash is the default shell; install starship prompt (shared config with pwsh)
+if ! command -v starship &>/dev/null; then
+  curl -sS https://starship.rs/install.sh | sh -s -- --yes
+fi
 
 # Install PowerShell (pwsh) modules by starting pwsh so profile runs and installs modules
-pwsh -NoLogo
+pwsh -NoLogo -Command "exit"

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# claude-yolo: auto-skip permissions
+alias claude="claude --dangerously-skip-permissions"
+
+# Aliases (match PowerShell profile)
+alias ll="ls -la --color=auto"
+alias ls="ls --color=auto"
+
+# Starship prompt (same config as PowerShell)
+if command -v starship &>/dev/null; then
+  eval "$(starship init bash)"
+fi
