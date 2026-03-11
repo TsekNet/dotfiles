@@ -11,9 +11,6 @@ format = """\
         ${custom.ssh_user}\
         $hostname\
         $aws\
-        $gcloud\
-        $singularity\
-        $kubernetes\
         $docker_context\
         (↓ Source control - for right side ↓)\
         $hg_branch\
@@ -57,15 +54,14 @@ disabled = false
 "C:/Tmp" = "🚧 "
 "/tmp" = "🚧 "
 "/Tmp" = "🚧 "
-"C:/projects" = "🚧 "
-"C:/Projects" = "🚧 "
-"~/projects/code" = "🚧 "
-"~/projects/Code" = "🚧 "
+
+[custom.workspace]
+disabled = true
 
 [custom.ssh_root]
 # disabled = true
 description = "Display username on a ssh session, if different from standard user"
-command = "echo $USER 2>/dev/null"
+command = "echo $USER"
 when = '[[ -n "$SSH_CONNECTION" ]] && ([[ "$USER" == "root" ]] || [[ -n "$SUDO_USER" ]] || [[ "$USER" != "$LOGNAME" ]])'
 shell = ["bash", "--noprofile", "--norc"]
 format = "[$output](red bold)"
@@ -73,7 +69,7 @@ format = "[$output](red bold)"
 [custom.ssh_user]
 # disabled = true
 description = "Display username, if on a ssh session"
-command = "echo $USER 2>/dev/null"
+command = "echo $USER"
 when = '([[ -n "$SSH_CONNECTION" ]] && [[ "$USER" != "root" ]] && [[ -z "$SUDO_USER" ]] && [[ "$USER" == "$LOGNAME" ]])'
 shell = ["bash", "--noprofile", "--norc"]
 format = "[$output](cyan)"
@@ -112,7 +108,13 @@ format = "[@$hostname](cyan) "
 ssh_only = true
 
 [gcloud]
-format = '$symbol'
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[singularity]
+disabled = true
 
 [cmd_duration]
 format = "[$duration](bold yellow)"
