@@ -10,25 +10,8 @@ cd "$HOME" || return
 echo -e "BEEP BOOP. Setting up..."
 sudo apt install curl wget gpg -y
 
-# https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-
-# https://code.visualstudio.com/docs/setup/linux
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-rm -f packages.microsoft.gpg
-sudo apt update
-
-sudo apt install openssh-server vim git xclip lsb-release dotnet-sdk-8.0 apt-transport-https code-insiders -y
+sudo apt install openssh-server vim git xclip lsb-release apt-transport-https -y
 curl -sS https://starship.rs/install.sh | sh -s -- --force
-
-# Install pwsh (https://github.com/PowerShell/PowerShell/issues/19889)
-dotnet tool update --global powershell
-PATH=$HOME/.dotnet/tools:$PATH
-echo $(pwsh --version) installed!
 
 sudo apt upgrade -y
 
@@ -64,5 +47,3 @@ if ! command -v starship &>/dev/null; then
   curl -sS https://starship.rs/install.sh | sh -s -- --yes
 fi
 
-# Install PowerShell (pwsh) modules by starting pwsh so profile runs and installs modules
-pwsh -NoLogo -Command "exit"
