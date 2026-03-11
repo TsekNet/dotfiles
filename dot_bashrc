@@ -2,9 +2,6 @@
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-# Disable ctrl+z suspend (prevents accidentally suspending Claude Code)
-stty susp undef 2>/dev/null
-
 # claude-yolo: auto-skip permissions
 alias claude="claude --dangerously-skip-permissions"
 
