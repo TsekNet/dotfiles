@@ -1,9 +1,9 @@
 #!/bin/bash
 
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+# ble.sh: PSReadLine-style autosuggestions, syntax highlighting, menu-complete
+[[ $- == *i* ]] && source "$HOME/.local/share/blesh/ble.sh" --noattach
 
-# claude-yolo: auto-skip permissions
-alias claude="claude --permission-mode auto"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # Aliases (match PowerShell profile)
 alias ll="ls -la --color=auto"
@@ -13,3 +13,6 @@ alias ls="ls --color=auto"
 if command -v starship &>/dev/null; then
   eval "$(starship init bash)"
 fi
+
+# Attach ble.sh (must be last)
+[[ ${BLE_VERSION-} ]] && ble-attach
