@@ -16,6 +16,10 @@
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "keybindings": [
         {
+            "id": null,
+            "keys": "ctrl+shift+minus"
+        },
+        {
             "id": "User.wt.4BD2AB9E",
             "keys": "ctrl+shift+6"
         },
@@ -24,16 +28,20 @@
             "keys": "ctrl+c"
         },
         {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
-        },
-        {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
         },
         {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
+        },
+        {
             "id": "Terminal.DuplicatePaneAuto",
             "keys": "alt+shift+d"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+plus"
         }
     ],
     "newTabMenu": [
@@ -43,12 +51,11 @@
     ],
     "profiles": {
         "defaults": {
+            "historySize": 50000,
             "unfocusedAppearance": {
-                "background": "#1E1E1E",
                 "adjustIndistinguishableColors": "never",
-                "experimental.dimUnfocused": true
-            },
-            "historySize": 50000
+                "background": "#1E1E1E"
+            }
         },
         "list": [
             {

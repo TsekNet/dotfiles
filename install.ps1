@@ -45,7 +45,6 @@ param (
     'gitversion.portable'
     'googledrive'
     'firefox'
-    'greenshot'
     'mpc-hc'
     'notepadplusplus'
     'openssh'

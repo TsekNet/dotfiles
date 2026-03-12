@@ -3,7 +3,7 @@
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # claude-yolo: auto-skip permissions
-alias claude="claude --dangerously-skip-permissions"
+alias claude="claude --permission-mode auto"
 
 # Aliases (match PowerShell profile)
 alias ll="ls -la --color=auto"

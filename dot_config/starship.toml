@@ -59,20 +59,20 @@ disabled = false
 disabled = true
 
 [custom.ssh_root]
-# disabled = true
 description = "Display username on a ssh session, if different from standard user"
 command = "echo $USER"
 when = '[[ -n "$SSH_CONNECTION" ]] && ([[ "$USER" == "root" ]] || [[ -n "$SUDO_USER" ]] || [[ "$USER" != "$LOGNAME" ]])'
 shell = ["bash", "--noprofile", "--norc"]
 format = "[$output](red bold)"
+ignore_timeout = true
 
 [custom.ssh_user]
-# disabled = true
 description = "Display username, if on a ssh session"
 command = "echo $USER"
 when = '([[ -n "$SSH_CONNECTION" ]] && [[ "$USER" != "root" ]] && [[ -z "$SUDO_USER" ]] && [[ "$USER" == "$LOGNAME" ]])'
 shell = ["bash", "--noprofile", "--norc"]
 format = "[$output](cyan)"
+ignore_timeout = true
 
 ################################################################################
 # Modules config                                                               #
