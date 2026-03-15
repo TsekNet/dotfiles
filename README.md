@@ -1,3 +1,5 @@
+🚨 **This repository is no longer maintained.**
+
 # TsekNet dotfiles 🛠
 
 Cross-platform automated system configuration. Run script. Setup System.
